@@ -1,2 +1,2 @@
 # PropertyBud
-This website assists you in finding a property.
+This website helps you find properties for sale/rent.
