@@ -1,8 +1,14 @@
 <component name="ProjectDictionaryState">
   <dictionary name="iamelviskemboi">
     <words>
+      <w>asgiref</w>
+      <w>djangorestframework</w>
+      <w>iamelviskemboi</w>
       <w>kemboi</w>
+      <w>postgresql</w>
       <w>propertybud</w>
+      <w>pytz</w>
+      <w>sqlparse</w>
     </words>
   </dictionary>
 </component>
