@@ -6,7 +6,6 @@ cryptography==2.9.2
 defusedxml==0.7.0rc1
 dj-database-url==0.5.0
 Django==3.0.6
-django-crispy-forms @ file:///home/iamelviskemboi/Downloads/pypi/django_crispy_forms-1.9.0-py2.py3-none-any.whl
 django-heroku==0.3.1
 django-rest-framework==0.1.0
 djangorestframework==3.11.0
