@@ -1,0 +1,183 @@
+<!DOCTYPE html>{% load static %}
+<html lang="en" xmlns="">
+<head>
+  <!-- Meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Elvis Kemboi">
+  <meta name="description" content="PropertyBud is a property listing web app">
+  <meta name="keywords" content="property, bud, buddy, PropertyBud, real estate, listing, genuine, awesome, best">
+  <!-- Title -->
+  <title>PropertyBud | {% block title %}{% endblock %}</title>
+  <!-- Links -->
+  <link href="{% static 'css/bootstrap/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/master/master.css' %}" rel="stylesheet">
+  <!-- Extra link slots -->
+  {% block xtralinks %}{% endblock %}
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+</head>
+<!-- Body -->
+<body class="bg-light">
+{% if user.is_authenticated %}
+<nav class="navbar navbar-expand-md navbar-dark text-nanum bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand clr-scs text-3 font-mono" href="{% url 'home' %}">PropertyBud</a>
+    <button class="navbar-toggler text-success" type="button" data-toggle="collapse" data-target="#authNavbarContent"
+            aria-controls="authNavbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      Menu<span class="navbar-toggler-icon menu-btn"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-md-center" id="authNavbarContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link spc-left" href="{% url 'search' %}">Search</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link spc-left" href="{% url 'notifications' user.username %}">Notifications</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link spc-left" href="{% url 'favorites' user.username %}">Favorites</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link spc-left" href="{% url 'msg' user.username %}">Messages</a>
+        </li>
+        {% if user.is_staff %}
+        <li class="nav-item">
+          <a class="nav-link spc-left" href="{% url 'listing' user.username %}">List property</a>
+        </li>
+        {% endif %}
+      </ul>
+      <ul class="navbar-nav float-right">
+        <li class="nav-item dropdown">
+          <a class="nav-link spcR-up rounded dropdown-toggle" href="{% url 'home' %}"
+             id="authAccountDropDown"
+             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="{{ user.profile.dp.url }}" class="dpp" alt="{{ user.username }}">
+          </a>
+          <div class="dropdown-menu bg-dark text-6" aria-labelledby="authAccountDropDown">
+            <a class="dropdown-item text-light bg-dark" href="{% url 'profile' pk=user.username %}">My Profile</a>
+            {% if user.is_staff %}
+            <a class="dropdown-item text-light bg-dark" href="{% url 'dashboard' pk=user.username %}">Dashboard</a>
+            {% endif %}
+            <a class="dropdown-item text-light bg-dark" href="{% url 'settings' %}">Settings</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item text-light bg-dark" href="{% url 'logout' %}">Logout</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{% else %}
+<nav class="navbar navbar-expand-md navbar-dark bg-dark text-nanum fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand clr-scs text-3 font-mono" href="{% url 'home' %}">PropertyBud</a>
+    <button class="navbar-toggler text-success" type="button" data-toggle="collapse" data-target="#navbarContent"
+            aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      Menu<span class="navbar-toggler-icon menu-btn"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-md-center" id="navbarContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link spc-left" href="{% url 'search' %}">For Rent</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link spc-left" href="{% url 'search' %}">For Sale</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link spc-left" href="{% url 'agents' %}">Find an Agent</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link spc-left" href="{% url 'about' %}">About us</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav float-right">
+        <li class="nav-item active">
+          <button class="btn btn-outline-success btn-block">
+            <a class="nav-link" href="{% url 'login' %}">
+              Sign in | Register
+            </a>
+          </button>
+        </li>
+      </ul>
+    </div>
+</nav>
+{% endif %}
+<div class="space-down">
+  {% block content %}
+  {% endblock %}
+</div>
+<footer class="text-muted footer bg-dark text-light">
+  <div class="container">
+      <span class="clr-light">
+        <div class="row">
+          <div class="col 4 text-left font-mono">
+            <a href="{% url 'ads' %}" class="link">ADVERTISE</a><br>
+            <a href="{% url 'careers' %}" class="link">CAREERS</a><br>
+            <a href="{% url 'policy' %}" class="link">PRIVACY</a><br>
+            <a href="{% url 't&c' %}" class="link">T & C</a>
+          </div>
+          <div class="col 4 text-center">
+            <span class="text-5 clr-brightlight font-mono">PropertyBud&trade;</span><br>
+            <span class="text-5 clr-brightlight font-mono"><span class="copyright">&copy;</span>2020</span><br>
+            <div class="social-icons">
+              <span class="text-6 clr-brightlight">
+                <a class="text-success fnt-list" href="{% url 'home' %}">
+                  <i class="fab fa-linkedin fnt"></i>
+                </a>
+              </span>
+              <span class="text-6 clr-brightlight">
+                <a class="text-success fnt-list" href="{% url 'home' %}">
+                  <i class="fab fa-facebook fnt"></i>
+                </a>
+              </span>
+              <span class="text-6 clr-brightlight">
+                <a class="text-success fnt-list" href="{% url 'home' %}">
+                  <i class="fab fa-twitter fnt"></i>
+                </a>
+              </span>
+              <span class="text-6 clr-brightlight">
+                <a class="text-success fnt-list" href="{% url 'home' %}">
+                  <i class="fab fa-instagram fnt"></i>
+                </a>
+              </span>
+            </div>
+          </div>
+          <div class="col 4">
+            <div class="row">
+              <div class="col 1"></div>
+              <div class="col font-mono">
+                <a href="{% url 'feedback' %}" class="link">FEEDBACK</a><br>
+                <a href="{% url 'affiliate' %}" class="link">AFFILIATE</a><br>
+                <a href="{% url 'about' %}" class="link">ABOUT</a><br>
+                <a href="{% url 'faqs' %}" class="link">FAQs</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </span>
+  </div>
+</footer>
+</body>
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script>
+  window.jQuery || document.write('<script src="{% static 'js/bootstrap/jquery-slim.min.js' %}"><\/script>')
+
+
+
+
+
+
+
+
+</script>
+<script src="{% static 'js/bootstrap/vendor/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/fontawesome/all.js' %}"></script>
+{% block xtrascripts %}{% endblock %}
+</html>

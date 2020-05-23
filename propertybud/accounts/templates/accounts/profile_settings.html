@@ -1,0 +1,61 @@
+{% extends 'base/base.html' %}
+{% block title %}Settings{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="">
+      <div class="col md-3">
+        <div class="container-fluid">
+          <div class="card light-dark bg-light">
+            <div class="card-header">
+              <button class="btn btn-block btn-outline-success"><a class="lnk"
+               href="{% url 'profile' pk=user.username%}">&leftharpoondown;Back
+                to profile</a></button>
+              <div class="card-title">
+                <h3 class="text-center text-3 link settings" style="text-align:center !important;">Account Settings</h3>
+              </div>
+              <div class="card-body">
+                <img src="{{ user.profile.dp.url }}" alt="{{ user.profile.first_name }}'s Display Picture"
+                     class="text-center dp">
+              </div>
+              <div class="card-footer">
+                <h3 class="font-mono text-5 text-center">@{{ user.username }}</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col md-9">
+      <div class="jumbotron light-dark text-dark">
+        <h3 class="font-mono text-center">Settings</h3>
+        <form action="" method="post">{% csrf_token %}
+          <div class="row">
+            <div class="col md-6">
+              <div class="spc-down font-mono">
+                {{ form.first_name }}
+              </div>
+            </div>
+            <div class="col md-6">
+              <div class="spc-down font-mono">
+                {{ form.last_name }}
+              </div>
+            </div>
+          </div>
+          <div class="spc-down font-mono">
+            <select class="form-control" name="country" id="{{ id_country }}">
+              {% for choice in form.country %}
+                {{ choice }}
+              {% endfor %}
+            </select>
+          </div>
+          <div class="spc-down font-mono">
+            {{ form.city }}
+          </div>
+          <button class="btn btn-md btn-block btn-outline-success">SAVE</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
