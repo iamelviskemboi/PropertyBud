@@ -8,7 +8,7 @@ from django_countries.fields import CountryField
 # USER PROFILE
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    country = CountryField()
+    country = CountryField(null=True, blank=True)
     # phone = models.IntegerField()
     city = models.CharField(max_length=100, null=True, blank=True)
     dp = models.ImageField(null=True, blank=True, default='placeholders/user/avatar-1577909.svg',
