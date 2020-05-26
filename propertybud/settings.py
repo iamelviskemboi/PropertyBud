@@ -127,7 +127,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Media files (Photos, Videos, Documents)
 
@@ -156,7 +156,6 @@ DATABASES['default'].update(db_from_env)
 
 # Activate Django-Heroku
 django_heroku.settings(locals())
-
 
 # Django-countries
 COUNTRIES_FLAG_URL = 'flags/{code}.gif'
