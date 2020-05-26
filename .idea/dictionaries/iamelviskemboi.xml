@@ -15,16 +15,19 @@
       <w>elif</w>
       <w>endblock</w>
       <w>endfor</w>
+      <w>endverbatim</w>
       <w>feedbacks</w>
       <w>flexbox</w>
       <w>fontawesome</w>
       <w>forloop</w>
       <w>freecodecamp</w>
+      <w>gmail</w>
       <w>googleapis</w>
       <w>gunicorn</w>
       <w>heroku</w>
       <w>herokuapp</w>
       <w>iamelviskemboi</w>
+      <w>imgonnaberich</w>
       <w>instagram</w>
       <w>jumbotron</w>
       <w>kemboi</w>
@@ -45,11 +48,14 @@
       <w>rgba</w>
       <w>scroller</w>
       <w>signin</w>
+      <w>smtp</w>
       <w>sqlparse</w>
       <w>steelblue</w>
+      <w>todobud</w>
       <w>toggler</w>
       <w>totaldarkness</w>
       <w>webkit</w>
+      <w>whitenoise</w>
       <w>xtralink</w>
       <w>xtralinks</w>
       <w>xtrascripts</w>

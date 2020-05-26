@@ -1,0 +1,106 @@
+{% extends 'base/base.html' %}
+{% block title %}Settings{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="jumbotron light-dark">
+    <nav class="navbar navbar-expand-md navbar-dark">
+      <div class="collapse navbar-collapse justify-content-md-center" id="settingsNavContent">
+        <ul class="navbar-nav mr-auto font-mono text-3">
+          <li class="nav-item">
+            <a class="nav-link stn spc-left" href="{% url 'profile' pk=user.username %}">PROFILE</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link stn spc-left" href="{% url 'settings' %}">NOTIFICATIONS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link stn spc-left" href="{% url 'settings' %}">SECURITY</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link stn spc-left" href="{% url 'settings' %}">SUBSCRIPTIONS</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="">
+          <div class="col md-3">
+            <div class="container-fluid">
+              <div class="card light-dark bg-light">
+                <div class="card-header">
+                  <div class="card-title">
+                    <h3 class="text-center text-3 link settings" style="text-align:center !important;">
+                      {{ user.first_name }} {{ user.last_name }}
+                    </h3>
+                  </div>
+                  <div class="card-body">
+                    <img src="{{ user.profile.dp.url }}" alt="{{ user.profile.first_name }}'s Display Picture"
+                         class="text-center dp">
+                  </div>
+                  <div class="card-footer">
+                    <h3 class="font-mono text-5 text-center">@{{ user.username }}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col md-9">
+          <div class="jumbotron light-dark">
+            <div class="row spc-up">
+              <div class="col md-12 text-left">
+                <p class="font-mono lead text-3 text-dark">
+                  <span class="text-3 text-success">COUNTRY:</span>
+                  {% if user.profile.country is not None %}
+                  <img class="flag" src="{{ user.profile.country.flag }}" alt="{{ user.profile.country }}">
+                  <span class="text-4 text-neue"><b>{{ user.profile.country.name }}</b></span>
+                  {% endif %}
+                  {% url 'country_edit' pk=user.username as country_url %}
+                  <a href="{{ country_url }}">edit</a>
+                </p>
+                {% if country_url %}
+                <form action="" method="post">{% csrf_token %}
+                  <div class="row">
+                    <div class="col md-3">
+                      {{ country.country }}
+                    </div>
+                    <div class="col md-9">
+                      <button class="btn btn-sm btn-block btn-outline-success">Save</button>
+                    </div>
+                  </div>
+                </form>
+                {% endif %}
+              </div>
+            </div>
+            <div class="row spc-up">
+              <div class="col md-12 text-left">
+                <p class="font-mono lead text-3 text-dark">
+                  <span class="text-3 text-success">CITY:</span>
+                  {% if user.profile.city is not None %}
+                  <span class="text-4 text-neue"><b>{{ user.profile.city }}</b></span>
+                  {% endif %}
+                  {% url 'city_edit' pk=user.username as city_url %}
+                  <a href="{{ city_url }}">edit</a>
+                </p>
+                {% if city_url %}
+                <form action="" method="post">{% csrf_token %}
+                  <div class="row">
+                    <div class="col md-6">
+                      {{ city.city }}
+                    </div>
+                    <div class="col md-6">
+                      <button class="btn btn-sm btn-block btn-outline-success">Save</button>
+                    </div>
+                  </div>
+                </form>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
