@@ -1,12 +1,69 @@
-{% extends 'base/base.html' %}
+{% extends 'base/base.html' %}{% load static %}
 {% block title %}home{% endblock %}
 {% block content %}
-<main role="main">
-  <div class="jumbotron">
-    <h1 class="text-center">Homepage</h1>
-    <p class="lead text-center">Lorem ipsum dolor amet si Lorem
-      ipsum dolor amet si Lorem ipsum dolor amet si<br>Lorem ipsum dolor amet si Lorem ipsum dolor amet.
-    </p>
+<div class="jumbotron" style="background-color:#e9ecef;">
+  <div class="row">
+    {% for listing in listings %}
+    <div class="col-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="float-right">
+            {% if listing.is_sponsored %}
+            <code style="background-color:#dca709;" class="text-light">SPONSORED</code>{% else %}<br>
+            {%endif %}
+          </div>
+        </div>
+      </div>
+      <div style="background-color:#fff;border-radius:.15rem;margin-bottom:3rem;">
+        <img src="{{ listing.photo_1.url }}" alt="{{ listing.photo1.name }}" height="350" width="100%"
+             style="border-radius:.3rem;">
+        <div class="row">
+          <div class="col-12">
+            <div class="float-left">
+              {% if listing.is_verified %}
+              <p style="background-color:#dca709;" class="text-white">VERIFIED</p>
+              {% else %}
+              <p>&nbsp;</p>
+              {%endif %}
+            </div>
+          </div>
+        </div>
+
+        <div style="margin:.2rem;">
+          <div class="card-title">
+            <h2 class="text-3 text-nanum">{{ listing.title.upper }}</h2>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-12">
+              <div class="float-left">
+                <p class="text-5 text-dark text-nanum">{{ listing.rooms }} Bedroom</p>
+                <p class="text-5 text-dark text-nanum">{% if listing.is_furnished %}Furnished{% else %}Not Furnished{% endif %}</p>
+              </div>
+              <div class="float-right">
+                <p class="text-5 text-dark text-nanum">{{ listing.amenities }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card bg-dark">
+          <div class="row" style="padding-top:.5rem;">
+            <div class="col-4" style="padding-left:1rem;">
+              <img src="{% static 'images/tag.svg' %}" alt="PRICE TAG" height="60" width="60">
+            </div>
+            <div class="col-8">
+              <div class="card-subtitle">
+                <p class="text-light text-4 text-nanum">{{ listing.get_transaction_display }}</p>
+              </div>
+              <div class="card-subtitle">
+                <p class="text-success text-4 text-nanum">${{ listing.price }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
   </div>
-</main>
+</div>
 {% endblock %}

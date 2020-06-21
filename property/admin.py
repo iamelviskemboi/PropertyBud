@@ -1,3 +1,12 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import (Amenities, Property, Rating)
+
+# Amenities
+admin.site.register(Amenities)
+
+# Property
+admin.site.register(Property)
+
+# Ratings
+admin.site.register(Rating)
