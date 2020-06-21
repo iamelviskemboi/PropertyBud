@@ -3,11 +3,13 @@ from django.contrib.auth.models import User
 from django.shortcuts import (redirect, render)
 
 from accounts.forms import (CityEditForm, CountryEditForm, PhoneNumberForm)
+from .models import (Property)
 
 
 # / -> HOMEPAGE
 def home(request):
-    return render(request, 'home/index.html')
+    context = {'listings': Property.objects.order_by('-is_sponsored', '-is_verified')}
+    return render(request, 'home/index.html', context)
 
 
 # / -> PROFILE

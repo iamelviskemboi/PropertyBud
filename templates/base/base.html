@@ -20,11 +20,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 </head>
 <!-- Body -->
-<body class="bg-light">
+<body style="background-color:#e9ecef;">
 {% if user.is_authenticated %}
 <nav class="navbar navbar-expand-md navbar-dark text-nanum bg-dark fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand clr-scs text-3 font-mono" href="{% url 'home' %}">PropertyBud</a>
+    <a class="navbar-brand clr-scs text-3 text-nanum" href="{% url 'home' %}">PropertyBud</a>
     <button class="navbar-toggler text-success" type="button" data-toggle="collapse" data-target="#authNavbarContent"
             aria-controls="authNavbarContent" aria-expanded="false" aria-label="Toggle navigation">
       Menu<span class="navbar-toggler-icon menu-btn"></span>
@@ -32,22 +32,22 @@
     <div class="collapse navbar-collapse justify-content-md-center" id="authNavbarContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link spc-left" href="{% url 'search' %}">Search</a>
+          <a class="nav-link spc-left" href="{% url 'search' %}"><i class="fas fa-search"></i> Search</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link spc-left" href="{% url 'notifications' user.username %}">Notifications</a>
+          <a class="nav-link spc-left" href="{% url 'favorites' user.username %}"><i class="fas fa-heart"></i> Favorites</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link spc-left" href="{% url 'favorites' user.username %}">Favorites</a>
+          <a class="nav-link spc-left" href="{% url 'notifications' user.username %}">
+            <span>
+              Notifications (<span style="color: #e9ecef !important;">4</span>)
+            </span>
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link spc-left" href="{% url 'msg' user.username %}">Messages</a>
+          <a class="nav-link spc-left" href="{% url 'listing' user.username %}"><i class="fas fa-plus-circle"></i> List
+            property</a>
         </li>
-        {% if user.is_staff %}
-        <li class="nav-item">
-          <a class="nav-link spc-left" href="{% url 'listing' user.username %}">List property</a>
-        </li>
-        {% endif %}
       </ul>
       <ul class="navbar-nav float-right">
         <li class="nav-item dropdown">
@@ -162,20 +162,7 @@
 </footer>
 </body>
 <!-- Scripts -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script>
-  window.jQuery || document.write('<script src="{% static 'js/bootstrap/jquery-slim.min.js' %}"><\/script>')
-
-
-
-
-
-
-
-
-</script>
+<script src="{% static 'js/bootstrap/jquery-slim.min.js' %}"></script>
 <script src="{% static 'js/bootstrap/vendor/popper.min.js' %}"></script>
 <script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
 <script src="{% static 'js/fontawesome/all.js' %}"></script>

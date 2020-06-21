@@ -10,7 +10,7 @@
   --ff-primary: 'Comic Neue', 'Lato';
   --ff-secondary: 'Quicksand', 'Lato';
   --ff-tertiary: 'Nanum Gothic', 'Lato';
-  --ff-freecodecamp: 'SFMono-Regular','Menlo','Monaco','Consolas','Liberation Mono','Courier New','monospace';
+  --ff-freecodecamp: 'Comic Neue', 'Lato';
 
   --fs-biggest: 3rem;
   --fs-bigR: 2.3rem;
@@ -29,7 +29,8 @@
   --clr-brightlight: #fff;
   --clr-totaldarkness: #000000;
   --clr-bluelink: #91989e;
-  --clr-brightsuccess: #00ff3a;
+  --clr-brightsuccess: #fff;
+  --clr-brightsuccesss: #067fff;
 }
 
 /* GENERAL STYLES
